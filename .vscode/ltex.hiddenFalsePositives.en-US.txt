@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QSpurred on by the national freedom movement, nationalist historians contributed to Indian histriography by glorifying India's past as a Golden Age to be ended by the arrival of Muslim invaders.\\E$"}

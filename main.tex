@@ -1,0 +1,131 @@
+%%--------------------------- PREAMBLE -----------------------------%%
+\documentclass[10pt, oneside]{book}
+\usepackage{lipsum}
+\usepackage{tgpagella}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[]{fancyhdr}
+\usepackage[]{titlesec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[]{hyperref}
+\usepackage{needspace}
+\usepackage{enumitem}
+\usepackage{layout}
+\usepackage{tcolorbox}
+
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+
+%%-------------------------- GLOSSARIES ----------------------------%%
+% \usepackage{glossary-mcols}
+\usepackage[acronym, toc]{glossaries}
+\usepackage[style=mcoltree, stylemods=mcols]{glossaries-extra}
+\input{./glossaries.tex}
+\renewcommand{\glsnamefont}[1]{\color{MidnightBlue}\textbf\texttt{#1}\quad}
+\renewcommand{\glossarypreamble}{\footnotesize}
+
+%%---------------------- BASIC DOCUMENT DETAILS --------------------%%
+%% These details are easiest hard-coded
+\author{Anirudh Krishnan}
+\title{Book Reports}
+\date{\today}
+
+
+%%------------ CHAPTER, SECTION, SUBSECTION FOMRATTING -------------%%
+
+%% Chapter formatting
+\titleformat{\chapter}
+  {\Huge\bfseries\raggedright\sffamily}{}{1em}{\color{Sepia}}[]
+
+% remove chapter number from section title and recursively from
+% subsection title
+\renewcommand{\thesection}{\arabic{section}}
+\titleformat{\section}
+  {\Large\bfseries\raggedright\sffamily}{\thesection}{1em}{\color{Sepia!50!BrickRed}}[]
+
+\titleformat{\subsection}
+  {\large\bfseries\raggedright\sffamily}{\thesubsection}{1em}{\color{BrickRed}}[]
+
+% all text in the document is now ragged right
+\AtBeginDocument{\raggedright}
+
+%%-------------- FINE CONTROL OVER DOCUMENT DIMENSIONS------------- %%
+%% Insert blank line on new paragraph
+\setlength{\parskip}{1em}
+
+\setlist[enumerate, 1]{
+    after={\bigskip},
+    leftmargin = *,
+    label={\color{Blue}\textbf{\arabic*.}}}
+
+\setlist[itemize, 1]{
+    itemsep = 1em,
+    after={\bigskip},
+    leftmargin = *,
+    label=\textcolor{Fuchsia}{\textbullet}}
+
+\setlist[description]{
+    after=\bigskip,
+    labelsep = \parindent,
+    align=left,
+    leftmargin=*,
+    itemindent=!,
+    font={\bfseries\sffamily\color{MidnightBlue}}}
+
+%% dont show any subdivisions below chapters in TOC
+\setcounter{tocdepth}{0}
+\setcounter{section}{-1}
+\setlength{\footskip}{0.5in}
+\addtolength{\jot}{1em}
+
+
+%%------------------------- MAIN DOCUMENT --------------------------%%
+\pagenumbering{Alph}
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+  \pagenumbering{roman}
+  \input{./custom_titlepage_auto.tex}
+  \tableofcontents
+\end{titlepage}
+
+\mainmatter
+\pagenumbering{arabic}
+%% Setting the vertical space around a display math environment
+% \setlength{\abovedisplayskip}{1em}
+% \setlength{\belowdisplayskip}{4em}
+% \setlength{\abovedisplayshortskip}{1em}
+% \setlength{\belowdisplayshortskip}{4em}
+
+
+%%---------------- HEADER AND FOOTER FORMATTING --------------------%%
+
+%% Set the pagestyle for plain pages which are on chapter start and
+%% fancy pages used everywhere else
+%% Once again the author and document title are hard-coded here for
+%% convenience.
+%% Defining and using variables like in a programming language
+%% is too finicky
+\fancypagestyle
+{plain}
+{\fancyhf{}
+  \fancyhead[]{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}}
+
+\fancypagestyle
+{fancy}{
+  \fancyhead[]{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}}
+
+\pagestyle{fancy}
+
+%%---------------------- INCLUDE CHAPTERS --------------------------%%
+% \include{content/chapter_01/notes}
+\include{Indian_History}
+
+
+\printnoidxglossaries
+\printbibliography
+\end{document}
