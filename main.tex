@@ -1,8 +1,8 @@
 %%--------------------------- PREAMBLE -----------------------------%%
-\documentclass[10pt, oneside]{book}
+\documentclass[10pt]{book}
 \usepackage{lipsum}
-\usepackage{tgpagella}
-\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage[a4paper]{geometry}
 \usepackage[]{fancyhdr}
 \usepackage[]{titlesec}
 \usepackage[dvipsnames]{xcolor}
@@ -12,16 +12,40 @@
 \usepackage{layout}
 \usepackage{tcolorbox}
 
-\usepackage[style=apa, backend=biber]{biblatex}
+\usepackage[
+  style=apa,
+  backend=biber]{biblatex}
 \addbibresource{bibliography.bib}
 
+%%------------------------- CAPTIONS -------------------------------%%
+\usepackage{caption}
+\usepackage{sidenotes}
+\DeclareCaptionStyle{marginfigure}{
+  textfont={scriptsize, sf, color=OliveGreen},
+  justification=centering,
+  labelformat=empty
+  }
 %%-------------------------- GLOSSARIES ----------------------------%%
 % \usepackage{glossary-mcols}
-\usepackage[acronym, toc]{glossaries}
-\usepackage[style=mcoltree, stylemods=mcols]{glossaries-extra}
+\usepackage[toc]{glossaries}
+\usepackage[
+  abbreviations,
+  style=mcoltree,
+  stylemods=mcols]{glossaries-extra}
+\setabbreviationstyle{short-nolong}
 \input{./glossaries.tex}
 \renewcommand{\glsnamefont}[1]{\color{MidnightBlue}\textbf\texttt{#1}\quad}
 \renewcommand{\glossarypreamble}{\footnotesize}
+\makenoidxglossaries
+
+%%-----------------------  MARGINS AND EDGES -----------------------%%
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{103pt}
+\setlength{\marginparsep}{16pt}
+\setlength{\marginparwidth}{144pt}
+\setlength{\textwidth}{350pt}
+\setlength{\textheight}{660pt}
 
 %%---------------------- BASIC DOCUMENT DETAILS --------------------%%
 %% These details are easiest hard-coded
@@ -36,8 +60,8 @@
 \titleformat{\chapter}
   {\Huge\bfseries\raggedright\sffamily}{}{1em}{\color{Sepia}}[]
 
-% remove chapter number from section title and recursively from
-% subsection title
+%% remove chapter number from section title and recursively from
+%% subsection title
 \renewcommand{\thesection}{\arabic{section}}
 \titleformat{\section}
   {\Large\bfseries\raggedright\sffamily}{\thesection}{1em}{\color{Sepia!50!BrickRed}}[]
@@ -45,7 +69,7 @@
 \titleformat{\subsection}
   {\large\bfseries\raggedright\sffamily}{\thesubsection}{1em}{\color{BrickRed}}[]
 
-% all text in the document is now ragged right
+%% all text in the document is now ragged right
 \AtBeginDocument{\raggedright}
 
 %%-------------- FINE CONTROL OVER DOCUMENT DIMENSIONS------------- %%
@@ -82,6 +106,7 @@
 \pagenumbering{Alph}
 \begin{document}
 
+% \layout*
 \frontmatter
 \begin{titlepage}
   \pagenumbering{roman}
@@ -126,6 +151,9 @@
 \include{Indian_History}
 
 
+
+%%------------------------ AFTER CONTENT ---------------------------%%
+\newgeometry{margin=1in}
 \printnoidxglossaries
 \printbibliography
 \end{document}
