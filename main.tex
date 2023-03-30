@@ -1,7 +1,14 @@
 %%--------------------------- PREAMBLE -----------------------------%%
 \documentclass[10pt]{book}
 \usepackage{lipsum}
+
+%%--------------------------FONT FAMILY-----------------------------%%
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{tgpagella}
+% \usepackage[default, light, bold]{sourceserifpro}
+
+
 \usepackage[a4paper]{geometry}
 \usepackage[]{fancyhdr}
 \usepackage[]{titlesec}
@@ -25,6 +32,8 @@
   justification=centering,
   labelformat=empty
   }
+\setlength{\fboxrule}{0.1pt}
+\setlength{\fboxsep}{2pt}
 %%-------------------------- GLOSSARIES ----------------------------%%
 % \usepackage{glossary-mcols}
 \usepackage[toc]{glossaries}
@@ -34,8 +43,11 @@
   stylemods=mcols]{glossaries-extra}
 \setabbreviationstyle{short-nolong}
 \input{./glossaries.tex}
-\renewcommand{\glsnamefont}[1]{\color{MidnightBlue}\textbf\texttt{#1}\quad}
-\renewcommand{\glossarypreamble}{\footnotesize}
+\renewcommand{\glsnamefont}[1]{\sffamily
+  \color{Blue}{#1} - }
+\renewcommand{\glossarypreamble}{
+  \footnotesize
+  }
 \makenoidxglossaries
 
 %%-----------------------  MARGINS AND EDGES -----------------------%%
@@ -58,16 +70,25 @@
 
 %% Chapter formatting
 \titleformat{\chapter}
-  {\Huge\bfseries\raggedright\sffamily}{}{1em}{\color{Sepia}}[]
+  {\Huge\bfseries\raggedright\sffamily}
+  {}
+  {1em}
+  {\color{Sepia}}[]
 
 %% remove chapter number from section title and recursively from
 %% subsection title
 \renewcommand{\thesection}{\arabic{section}}
 \titleformat{\section}
-  {\Large\bfseries\raggedright\sffamily}{\thesection}{1em}{\color{Sepia!50!BrickRed}}[]
+  {\Large\bfseries\raggedright\sffamily}
+  {\thesection}
+  {1em}
+  {\color{Sepia!50!BrickRed}}[]
 
 \titleformat{\subsection}
-  {\large\bfseries\raggedright\sffamily}{\thesubsection}{1em}{\color{BrickRed}}[]
+  {\large\bfseries\raggedright\sffamily}
+  {\thesubsection}
+  {1em}
+  {\color{BrickRed}}[]
 
 %% all text in the document is now ragged right
 \AtBeginDocument{\raggedright}
@@ -141,8 +162,10 @@
 \fancypagestyle
 {fancy}{
   \fancyhead[]{}
+  % \fancyfoot[]{}
   \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0pt}}
+  \renewcommand{\footrulewidth}{0pt}
+}
 
 \pagestyle{fancy}
 
